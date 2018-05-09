@@ -66,11 +66,11 @@ class Line {
     this.b = b;
   }
   draw(canvas,ctx) {
-    ctx.strokeStyle = this.lineStyle;
-    ctx.beginPath();
-    ctx.moveTo(this.a.x,this.a.y);
-    ctx.lineTo(this.b.x,this.b.y);
-    ctx.stroke();
+    // ctx.strokeStyle = this.lineStyle;
+    // ctx.beginPath();
+    // ctx.moveTo(this.a.x,this.a.y);
+    // ctx.lineTo(this.b.x,this.b.y);
+    // ctx.stroke();
     var mPoint = new Point(Mouse.x,Mouse.y,true);
     if(this.a.contains(mPoint)){
       this.a.draw(canvas,ctx);
@@ -250,7 +250,7 @@ function getMouse(e) {
 }
 var curr_line = null;
 canvas.addEventListener('click',function(e){
-  //WIP Needed for eventually updating points. 
+  //WIP Needed for eventually updating points.
   // point_list.forEach(function(val,i){
   //   if(val.contains(getMouse(e).x,getMouse(e).y)){
   //     console.log("Pressed!");
@@ -328,11 +328,18 @@ function draw(){
     	ctx.fill();
     }
 	});
+  gradient = ctx.createRadialGradient(Mouse.x, Mouse.y, 150, Mouse.x,Mouse.y, 200);
+gradient.addColorStop(0, "transparent");
+gradient.addColorStop(1, "black");
+ctx.fillStyle = gradient;
+ctx.fillRect(0, 0, 800, 558);
 
 }
 
 function drawPolygon(polygon,ctx,fillStyle){
-	ctx.fillStyle = fillStyle;
+  // Fill with gradient
+  ctx.fillStyle=fillStyle;
+
 	ctx.beginPath();
 	ctx.moveTo(polygon[0].x,polygon[0].y);
 	for(var i=1;i<polygon.length;i++){
