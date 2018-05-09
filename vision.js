@@ -14,6 +14,7 @@ class Point{
   get position(){
     return {x:this.x, y:this.y};
   }
+  //WIP Still needs to actually snap the point. Not just say snap!
   snap(p){
     if(p === this){
       return false;
@@ -249,6 +250,7 @@ function getMouse(e) {
 }
 var curr_line = null;
 canvas.addEventListener('click',function(e){
+  //WIP Needed for eventually updating points. 
   // point_list.forEach(function(val,i){
   //   if(val.contains(getMouse(e).x,getMouse(e).y)){
   //     console.log("Pressed!");
