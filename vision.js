@@ -20,7 +20,7 @@ class Point{
       return false;
     }
     if(this.distance(p) < 10){
-      point_list.push(this);
+      //point_list.push(this);
       this.x = p.x;
       this.y = p.y;
       console.log("Snap!");
@@ -259,14 +259,17 @@ canvas.addEventListener('click',function(e){
   // });
   var mPoint = new Point(getMouse(e).x,getMouse(e).y,true);
   if(curr_line){
-    point_list.forEach(function(val){
+    //slice excludes the current mouse position from point list
+    point_list.slice(0, -1).forEach(function(val){
       if (mPoint.snap(val)){
         return;
       }
     });
+    curr_line.b = mPoint; //updates the curr_line to account for snap  
     curr_line = null;
 
   }else{
+    point_list.push(mPoint);
     point_list.forEach(function(val){
       if(mPoint.snap(val)){
         return;
